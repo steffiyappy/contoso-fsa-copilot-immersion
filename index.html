@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contoso FSA · M365 Copilot Sharing & Immersion</title>
+<style>
+:root{--radius:12px;--shadow:0 2px 8px rgba(0,0,0,.12);--cfsa:#1E3A5F;--gold:#C9A227}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1020;--panel:#0e1633;--panel2:#0a1228;--ink:#e2e8f0;--muted:#94a3b8;--border:#1e2d4a;--sidebar-a:#0e1530;--sidebar-b:#0a0f24;--accent:#3b82f6;--accent2:#60a5fa;--nav-hover:#172244;--badge-bg:#0a0f24;--code:#0d1535;--good:#22c55e;--warn:#f59e0b;--danger:#ef4444;--callout-info:#0e1c2c;--callout-warn:#2b220e;--callout-bad:#2b1414;--callout-good:#0e2418}}
+@media(prefers-color-scheme:light){:root{--bg:#f0f4f8;--panel:#ffffff;--panel2:#f0f6ff;--ink:#1a202c;--muted:#64748b;--border:#d1d9e6;--sidebar-a:#1E3A5F;--sidebar-b:#0F2545;--accent:#2563eb;--accent2:#1d4ed8;--nav-hover:#dbeafe;--badge-bg:#e8f0fe;--code:#1e2b55;--good:#16a34a;--warn:#d97706;--danger:#dc2626;--callout-info:#eff6ff;--callout-warn:#fffbeb;--callout-bad:#fef2f2;--callout-good:#f0fdf4}}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Inter","Segoe UI",system-ui,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font-family:"JetBrains Mono","Consolas",monospace;font-size:13px}
+.layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+aside{background:linear-gradient(180deg,var(--sidebar-a),var(--sidebar-b));border-right:1px solid var(--border);padding:24px 18px;position:sticky;top:0;height:100vh;overflow-y:auto;color:#e2e8f0}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.brand .logo{width:40px;height:40px;border-radius:9px;background:var(--cfsa);display:grid;place-items:center;font-weight:900;color:#fff;font-size:11px;letter-spacing:-.5px;border:2px solid var(--gold)}
+.brand h1{font-size:15px;margin:0;letter-spacing:.2px;color:#fff}
+.tag{font-size:11px;color:#94a3b8;margin-bottom:18px}
+nav h3{font-size:10px;letter-spacing:1.2px;color:#94a3b8;text-transform:uppercase;margin:18px 0 8px}
+nav a{display:block;color:#e2e8f0;padding:8px 10px;border-radius:9px;font-size:14px;margin-bottom:2px;border:1px solid transparent}
+nav a:hover{background:rgba(255,255,255,.12);text-decoration:none;border-color:rgba(255,255,255,.2);color:#fff}
+nav a.active{background:rgba(59,130,246,.25);border-color:#3b82f6;color:#93c5fd}
+main{padding:28px 40px 80px;max-width:1080px}
+.hero{background:radial-gradient(800px 320px at 0% 0%,rgba(30,58,95,.45),transparent 60%),radial-gradient(700px 280px at 100% 0%,rgba(201,162,39,.18),transparent 60%),var(--panel);border:1px solid var(--border);border-radius:18px;padding:30px;margin-bottom:24px}
+.hero .pill{display:inline-block;background:var(--badge-bg);border:1px solid var(--border);color:var(--accent2);font-size:11px;letter-spacing:1.2px;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+.hero h2{font-size:30px;margin:0 0 8px;line-height:1.2}
+.hero p{color:var(--muted);margin:0;max-width:780px}
+.meta-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px;color:var(--muted);font-size:13px}
+.meta-row span b{color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:18px}
+.card .lead{color:var(--muted);margin:0 0 14px}
+.card h4{margin:18px 0 6px;font-size:15px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+ul{padding-left:20px;margin:8px 0}li{margin:4px 0}
+.modulehead{display:flex;align-items:center;gap:14px;margin:32px 0 12px}
+.modulehead .num{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--cfsa),var(--accent));display:grid;place-items:center;font-weight:800;font-size:20px;color:#fff}
+.modulehead h2{margin:0;font-size:22px}
+.modulehead small{display:block;color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.activity{border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0;background:var(--panel)}
+.activity .head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.activity .num{background:var(--accent);color:#fff;font-weight:800;font-size:12px;padding:3px 9px;border-radius:6px}
+.activity .time{color:var(--muted);font-size:12px}
+.activity .file{font-size:12px;color:var(--accent2);background:var(--badge-bg);border:1px solid var(--border);padding:3px 9px;border-radius:6px}
+.activity h4{margin:0;font-size:16px;color:var(--ink);font-weight:600}
+.activity p{margin:6px 0;color:var(--muted);font-size:14px}
+.task-step{background:var(--panel2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:8px;padding:12px 14px;margin:10px 0}
+.task-step .step-label{font-size:11px;letter-spacing:1px;color:var(--accent2);text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.task-step .tool-badge{display:inline-block;background:rgba(0,100,200,.2);border:1px solid var(--accent);color:var(--accent2);font-size:11px;padding:2px 8px;border-radius:5px;margin-left:8px;vertical-align:middle}
+.prompt{position:relative;background:var(--code);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:14px 60px 14px 16px;margin:10px 0;font-family:"JetBrains Mono","Consolas",monospace;font-size:13px;color:#c9d6ff;white-space:pre-wrap;line-height:1.6}
+.prompt .copy{position:absolute;top:8px;right:8px;background:#1a2552;color:#e2e8f0;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}
+.prompt .copy:hover{background:var(--accent);color:#fff}
+.prompt .copy.copied{background:var(--good);color:#0a0f24}
+.callout{border-left:4px solid var(--accent2);background:var(--callout-info);padding:12px 16px;margin:12px 0;border-radius:8px;color:var(--ink);font-size:14px}
+.callout.warn{border-color:var(--warn);background:var(--callout-warn)}
+.callout.danger{border-color:var(--danger);background:var(--callout-bad)}
+.callout.good{border-color:var(--good);background:var(--callout-good)}
+.callout b{color:var(--ink)}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--accent2);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.8px}
+td a{color:var(--ink);font-weight:600}
+td a:hover{color:var(--accent2)}
+.agenda{display:grid;grid-template-columns:90px 1fr 100px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.agenda>div{padding:10px 14px;border-bottom:1px solid var(--border)}
+.agenda>div:nth-child(3n+1){color:var(--accent2);font-weight:700;background:var(--panel)}
+.agenda>div:nth-child(3n+3){color:var(--muted);text-align:right}
+.agenda>div:nth-last-child(-n+3){border-bottom:0}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:14px}
+.tool-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+.tool-card .icon{font-size:22px;margin-bottom:6px}
+.tool-card h5{margin:0 0 4px;font-size:14px;color:var(--ink)}
+.tool-card p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;letter-spacing:.5px}
+.badge.blue{background:rgba(0,100,200,.2);color:var(--accent2);border:1px solid var(--accent)}
+.badge.green{background:rgba(34,197,94,.15);color:var(--good);border:1px solid var(--good)}
+.badge.gold{background:rgba(201,162,39,.15);color:var(--gold);border:1px solid var(--gold)}
+.story-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+@media(max-width:900px){.story-grid{grid-template-columns:repeat(2,1fr)}}
+.story-card{border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--panel)}
+.story-card .time{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:1px}
+.story-card .title{font-size:14px;font-weight:700;margin:6px 0 4px;color:var(--ink)}
+.story-card p{font-size:12px;color:var(--muted);margin:0 0 8px}
+.story-card .tool{font-size:11px;color:var(--accent2);background:var(--badge-bg);border:1px solid var(--border);padding:3px 8px;border-radius:5px;display:inline-block}
+/* Password Screen */
+#lock{position:fixed;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(30,58,95,.5),transparent 60%),#0b1020;z-index:9999;display:flex;align-items:center;justify-content:center}
+.lock-box{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:40px 44px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lock-box .cfsa-logo{width:64px;height:64px;border-radius:14px;background:var(--cfsa);display:grid;place-items:center;font-weight:900;font-size:14px;color:#fff;margin:0 auto 18px;border:2px solid var(--gold)}
+.lock-box h2{margin:0 0 6px;font-size:22px}
+.lock-box p{color:var(--muted);font-size:14px;margin:0 0 22px}
+.lock-box input[type=password],.lock-box input[type=text]{width:100%;background:var(--badge-bg);border:1px solid var(--border);border-radius:10px;color:var(--ink);font-size:15px;padding:12px 44px 12px 16px;margin-bottom:0;outline:none;font-family:inherit;transition:border-color .2s}
+.lock-box input:focus{border-color:var(--accent)}
+.lock-box button{width:100%;background:var(--cfsa);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;padding:13px;cursor:pointer;transition:background .2s}
+.lock-box button:hover{background:var(--accent)}
+.lock-box .err{color:var(--danger);font-size:13px;margin-top:8px;min-height:18px}
+.lock-box .conf{font-size:11px;color:var(--muted);margin-top:14px}
+.pw-wrap{position:relative;margin-bottom:12px}
+.toggle-pw{position:absolute!important;right:12px;top:50%;transform:translateY(-50%);background:none!important;border:none!important;width:auto!important;padding:0!important;cursor:pointer;opacity:.7;color:var(--muted)}
+.toggle-pw:hover{background:none!important;opacity:1}
+.toggle-pw svg{width:18px;height:18px;fill:currentColor;display:block}
+@media(max-width:760px){.layout{grid-template-columns:1fr}aside{position:static;height:auto}main{padding:16px 18px 60px}.hero h2{font-size:22px}}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+  <div class="lock-box">
+    <div class="cfsa-logo">CFSA</div>
+    <h2>Contoso FSA · Copilot Session</h2>
+    <p>M365 Copilot Sharing &amp; Immersion<br>Enter the session password to continue.</p>
+    <div class="pw-wrap">
+      <input type="password" id="pw" placeholder="Session password" autocomplete="off"/>
+      <button type="button" id="toggle-pw" class="toggle-pw" title="Show password" onclick="togglePw()"><svg id="eye-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg></button>
+    </div>
+    <button onclick="unlock()">Enter Session →</button>
+    <div class="err" id="err"></div>
+    <div class="conf">Confidential · Contoso Financial Services Authority · Internal use only</div>
+  </div>
+</div>
+
+<div class="layout" id="main" style="display:none">
+<!-- SIDEBAR -->
+<aside>
+  <div class="brand">
+    <div class="logo">CFSA</div>
+    <h1>M365 Copilot<br>Sharing &amp; Immersion</h1>
+  </div>
+  <div class="tag">Contoso Financial Services Authority</div>
+  <nav>
+    <h3>Overview</h3>
+    <a href="#overview">About this session</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#story">The Story</a>
+    <a href="#tools">Tools used today</a>
+    <h3>Get Started</h3>
+    <a href="#getstarted">🔑 Log in to Copilot</a>
+    <h3>Try It Yourself</h3>
+    <a href="#try1">Prompt 1 · Research</a>
+    <a href="#try2">Prompt 2 · Email</a>
+    <a href="#try3">Prompt 3 · Summarise</a>
+    <h3>Hands-on Exercises</h3>
+    <a href="#ex1">Exercise 1 · Researcher</a>
+    <a href="#ex2">Exercise 2 · Meeting Minutes</a>
+    <a href="#ex3">Exercise 3 · Survey Analysis</a>
+    <a href="#ex4">Exercise 4 · Cowork Dashboard</a>
+    <h3>Resources</h3>
+    <a href="#files">Sample files</a>
+    <a href="#tips">Tips &amp; prompts</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- HERO -->
+<section id="overview">
+<div class="hero">
+  <span class="pill">M365 COPILOT · SHARING + IMMERSION</span>
+  <h2>Contoso FSA · M365 Copilot Sharing &amp; Immersion</h2>
+  <p>A focused 60-minute session for supervisors, analysts and policy officers across Contoso Financial Services Authority — covering meetings, research, surveying, reporting, publications, and stakeholder coordination with banks, the exchange, and fintech.</p>
+  <div class="meta-row">
+    <span><b>Format</b> Live demo + Hands-on</span>
+    <span><b>Duration</b> 60 minutes</span>
+    <span><b>Tools</b> Copilot Chat (everyone) · M365 Copilot (premium users)</span>
+    <span><b>Outcome</b> An interactive HTML supervisory dashboard</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>About this session</h3>
+  <p class="lead">A practical session designed for a regulator's day-to-day work. We move from <b>strategic context → live demos → hands-on practice</b>, ending with each participant building an interactive supervisory dashboard.</p>
+  <h4>What you will leave with</h4>
+  <ul>
+    <li>Fluency in Copilot Chat — usable today by every employee, with or without a paid licence</li>
+    <li>Confidence with the premium features of M365 Copilot: Researcher, Analyst, Plan in Excel, Cowork</li>
+    <li>A working set of supervisory artefacts: formal meeting minutes, sector survey analysis, a stakeholder note, and an interactive HTML dashboard</li>
+    <li>A clear mental model of what Copilot can do across a regulator's workflow — and what it cannot</li>
+  </ul>
+  <h4>Licence mix today</h4>
+  <ul>
+    <li><span class="badge blue">EVERYONE</span> Copilot Chat (work mode for licensed users; web-grounded chat for non-licensed) — used in Sessions 2 and the "Try it yourself" hands-on</li>
+    <li><span class="badge gold">PREMIUM</span> M365 Copilot in Outlook, Teams, Word, Excel, PowerPoint plus Researcher, Analyst, Plan in Excel and Cowork — used in the demos and hands-on exercises</li>
+  </ul>
+  <div class="callout warn">
+    <b>Data privacy reminder:</b> Do not paste real supervisory data, identifiable consumer information, or commercially sensitive entity data into Copilot during this session. Use only the sample files provided. With M365 Copilot your prompts and grounding data stay within your Microsoft 365 tenant and are not used to train AI models.
+  </div>
+</div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+<div class="modulehead"><div class="num">📋</div><h2>Agenda<small>60 minutes total</small></h2></div>
+<div class="card">
+<div class="agenda">
+  <div>00:00</div><div><b>Intro</b> · Why Copilot, why now</div><div>3 min</div>
+  <div>00:03</div><div><b>Deep dive: Copilot Chat</b> · what it is, who can use it</div><div>4 min</div>
+  <div>00:07</div><div><b>Live demo: Copilot Chat</b> · research a stakeholder, draft a note</div><div>5 min</div>
+  <div>00:12</div><div><b>Try it yourself</b> · open Copilot Chat, run 3 prompts</div><div>5 min</div>
+  <div>00:17</div><div><b>Live demo: M365 Copilot premium</b> · Outlook · Teams · Word · Excel · PowerPoint</div><div>8 min</div>
+  <div>00:25</div><div><b>Q&amp;A · break · re-platform</b></div><div>10 min</div>
+  <div>00:35</div><div><b>Hands-on Exercise 1</b> · Researcher (Critique + Model Council)</div><div>5 min</div>
+  <div>00:40</div><div><b>Hands-on Exercise 2</b> · Teams Recap → Word formal minutes</div><div>5 min</div>
+  <div>00:45</div><div><b>Hands-on Exercise 3</b> · Sector survey analysis (Excel + Plan in Excel + Analyst)</div><div>10 min</div>
+  <div>00:55</div><div><b>Hands-on Exercise 4</b> · Cowork → interactive HTML dashboard</div><div>15 min</div>
+  <div>01:10</div><div><b>Wrap-up &amp; final Q&amp;A</b></div><div>5 min</div>
+</div>
+<div class="callout" style="margin-top:14px">
+  <b>Tip:</b> Keep this page open on a second tab. Each exercise has a goal, instructions, and a copy-paste prompt.
+</div>
+</div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+<div class="modulehead"><div class="num">🎬</div><h2>The Story<small>A day in the life of a regulator</small></h2></div>
+<div class="card">
+<p class="lead">Meet <b>Andi</b>, Director of Sectoral Supervision at Contoso FSA. He has back-to-back priorities today: a sector review meeting, a survey of 80 licensed fintechs to interrogate, a coordination note to send to the banking association and the exchange, and a quarterly publication to ship. Here is how M365 Copilot supports each step:</p>
+<div class="story-grid">
+  <div class="story-card"><div class="time">08:30 · RESEARCH</div><div class="title">Brief myself</div><p>Latest global fintech conduct trends before the supervisory review.</p><span class="tool">Researcher · Copilot Chat</span></div>
+  <div class="story-card"><div class="time">09:30 · MEETING</div><div class="title">Run the Q3 review</div><p>Quarterly sector review with deputies on Microsoft Teams.</p><span class="tool">Teams Recap → Word</span></div>
+  <div class="story-card"><div class="time">11:00 · ANALYSE</div><div class="title">Interrogate the data</div><p>Q3 fintech survey: complaints, AML, cyber, capital adequacy.</p><span class="tool">Excel · Plan · Analyst</span></div>
+  <div class="story-card"><div class="time">14:00 · COORDINATE</div><div class="title">Stakeholder note</div><p>Draft the coordination note to BAI, IDX and FAN for Q4.</p><span class="tool">Outlook · Word</span></div>
+  <div class="story-card"><div class="time">16:00 · PUBLISH</div><div class="title">Ship the deliverable</div><p>Build the Q3 publication and an interactive supervisory dashboard.</p><span class="tool">Cowork · PowerPoint · HTML</span></div>
+</div>
+<div class="callout good" style="margin-top:14px">
+  <b>The value:</b> One regulator. One workday. Research, meet, analyse, coordinate, publish — all without leaving Microsoft 365. Copilot Chat is available to <b>every</b> employee for daily work; M365 Copilot adds in-app drafting, Researcher, Analyst, Plan in Excel and Cowork for power users.
+</div>
+</div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+<div class="modulehead"><div class="num">🛠</div><h2>Tools used today<small>Copilot surfaces</small></h2></div>
+<div class="card">
+<div class="tools-grid">
+  <div class="tool-card"><div class="icon">💬</div><h5>Copilot Chat <span class="badge blue">EVERYONE</span></h5><p>Work-mode chat for licensed users (Microsoft Graph access); web-grounded chat for non-licensed users. Your starter Copilot — usable from day one.</p></div>
+  <div class="tool-card"><div class="icon">🔍</div><h5>Researcher (Critique) <span class="badge gold">PREMIUM</span></h5><p>One model researches and drafts; a second reviews source reliability and evidence grounding before producing one polished report. Outperforms single-model on the DRACO benchmark.</p></div>
+  <div class="tool-card"><div class="icon">⚖️</div><h5>Model Council <span class="badge gold">PREMIUM</span></h5><p>In Researcher, multiple AI models each run your prompt independently. A judge model writes a cover letter highlighting agreements, divergences and unique insights.</p></div>
+  <div class="tool-card"><div class="icon">📊</div><h5>Excel Copilot + Plan <span class="badge gold">PREMIUM</span></h5><p>Natural-language analysis, dashboards, RAG status. <b>Plan in Excel</b> turns a goal into a multi-step worksheet build that you approve before it runs.</p></div>
+  <div class="tool-card"><div class="icon">📈</div><h5>Analyst Agent <span class="badge gold">PREMIUM</span></h5><p>Out-of-the-box AI analyst built into M365 Copilot. Drop in a dataset and ask complex questions: peer benchmarking, trend analysis, risk segmentation.</p></div>
+  <div class="tool-card"><div class="icon">📝</div><h5>Word Copilot <span class="badge gold">PREMIUM</span></h5><p>Document drafting: formal minutes, supervisory letters, stakeholder briefings — grounded on your uploaded data files.</p></div>
+  <div class="tool-card"><div class="icon">🎨</div><h5>PowerPoint Copilot <span class="badge gold">PREMIUM</span></h5><p>Generate presentation drafts, refresh narrative flow, and convert Word documents into board-ready decks.</p></div>
+  <div class="tool-card"><div class="icon">📥</div><h5>Outlook Copilot <span class="badge gold">PREMIUM</span></h5><p>Summarise long threads, draft replies in your tone, schedule follow-ups, and surface what changed since you last looked.</p></div>
+  <div class="tool-card"><div class="icon">🤝</div><h5>Teams Recap <span class="badge gold">PREMIUM</span></h5><p>Auto-transcribed meetings with searchable notes, decisions and action items. Hand the recap to Word to produce formal minutes.</p></div>
+  <div class="tool-card"><div class="icon">👥</div><h5>Cowork <span class="badge gold">PREMIUM</span></h5><p>Delegate multi-step tasks to Copilot. Describe the outcome and Copilot creates a plan, checks in for approvals, and produces the artefact — including an HTML dashboard.</p></div>
+</div>
+</div>
+</section>
+
+<!-- GET STARTED -->
+<section id="getstarted">
+<div class="modulehead"><div class="num">🔑</div><h2>Get started<small>Open Copilot now</small></h2></div>
+<div class="card">
+<ol class="">
+  <li>Open Microsoft Edge.</li>
+  <li>Go to <a href="https://m365.cloud.microsoft" target="_blank">m365.cloud.microsoft</a> (or <a href="https://copilot.cloud.microsoft" target="_blank">copilot.cloud.microsoft</a> if available).</li>
+  <li>Sign in with your <b>Contoso FSA</b> work account.</li>
+  <li>Click the <b>Copilot Chat</b> icon in the left rail.</li>
+  <li>If you have an M365 Copilot licence, look for the <b>Researcher</b> and <b>Analyst</b> agents in the same panel.</li>
+</ol>
+<div class="callout">
+  <b>Tip:</b> Pin the Copilot Chat tab. We will return to it for every exercise today.
+</div>
+</div>
+</section>
+
+<!-- TRY IT YOURSELF -->
+<section id="try1">
+<div class="modulehead"><div class="num">🧪</div><h2>Try it yourself<small>Copilot Chat — usable by everyone</small></h2></div>
+<div class="card">
+<p class="lead">Open <b>Copilot Chat</b> and try these three prompts. They use only public information and the regulator's normal day-to-day work — no internal data needed.</p>
+
+<div class="activity" id="try-research">
+  <div class="head"><span class="num">TRY 1</span><span class="time">~2 min</span><span class="badge blue">COPILOT CHAT</span></div>
+  <h4>Research a fintech sub-sector</h4>
+  <p>Use Copilot Chat as your daily research analyst.</p>
+  <div class="prompt">Saya seorang supervisor di sebuah otoritas jasa keuangan. Berikan saya ringkasan singkat (maks 8 bullet) tentang tren regulasi global untuk pinjaman peer-to-peer (P2P lending) dalam 12 bulan terakhir, dengan fokus pada praktik penagihan, transparansi biaya, dan perlindungan konsumen. Sebutkan 3-5 sumber otoritatif (regulator, IMF, BIS, FSB) dan akhiri dengan 3 pertanyaan terbuka yang harus saya tanyakan kepada asosiasi industri minggu depan.<button class="copy" onclick="cp(this)">Copy</button></div>
+</div>
+
+<div class="activity" id="try2">
+  <div class="head"><span class="num">TRY 2</span><span class="time">~2 min</span><span class="badge blue">COPILOT CHAT</span></div>
+  <h4>Draft a stakeholder email</h4>
+  <p>Turn three rough bullets into a polished, professional email in seconds.</p>
+  <div class="prompt">Tolong tuliskan sebuah email resmi (Bahasa Indonesia, nada profesional) dari seorang Direktur Pengawasan Sektor kepada Ketua Asosiasi Perbankan, mengundang mereka ke pertemuan koordinasi triwulanan pada 14 November untuk membahas: (1) tindak lanjut dari kerangka resilience operasional, (2) kalender BCM tabletop, dan (3) dialog tertutup dengan dua bank Tier-1 mengenai buffer CAR. Akhiri dengan permintaan untuk mengonfirmasi kehadiran sebelum 31 Oktober.<button class="copy" onclick="cp(this)">Copy</button></div>
+</div>
+
+<div class="activity" id="try3">
+  <div class="head"><span class="num">TRY 3</span><span class="time">~1 min</span><span class="badge blue">COPILOT CHAT</span></div>
+  <h4>Summarise a long policy document</h4>
+  <p>Try this with any public consultation paper you can find online (paste the URL).</p>
+  <div class="prompt">Saya akan memberikan tautan ke sebuah konsultasi publik kebijakan. Tolong baca dokumen tersebut dan berikan: (a) ringkasan eksekutif maksimal 6 bullet, (b) dampak utama bagi otoritas pengawas (3 bullet), (c) tiga risiko implementasi yang harus dipertimbangkan, dan (d) rekomendasi posisi awal yang netral. URL: [paste a public consultation URL — e.g., from BIS or FSB]<button class="copy" onclick="cp(this)">Copy</button></div>
+</div>
+
+<div class="callout good">
+  <b>What you just experienced</b> is available to <b>every</b> employee at Contoso FSA today, regardless of licence type. The next exercises require an M365 Copilot premium licence.
+</div>
+</div>
+</section>
+
+<!-- HANDS-ON EXERCISES -->
+<section id="ex1">
+<div class="modulehead"><div class="num">1</div><h2>Exercise 1 · Researcher<small>Multi-model deep research</small></h2></div>
+<div class="activity">
+  <div class="head"><span class="num">5 min</span><span class="time">Premium</span><span class="badge gold">RESEARCHER</span></div>
+  <h4>Goal: Produce a board-ready research brief on the global fintech complaints landscape</h4>
+  <p>Researcher uses two AI models (one writes, one critiques) before producing a single polished output. Try Model Council if you have time.</p>
+  <div class="task-step">
+    <div class="step-label">Step 1 · Open Researcher<span class="tool-badge">M365 COPILOT CHAT</span></div>
+    In Copilot Chat, switch to the <b>Researcher</b> agent. Keep the model selector on <b>Auto</b> (Critique mode). Optionally switch to <b>Model Council</b> for a comparative cover letter.
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 2 · Run the prompt</div>
+    <div class="prompt">I am a Director of Sectoral Supervision at Contoso Financial Services Authority. Produce a 2-page research brief on global trends in peer-to-peer lending consumer complaints in the last 18 months. Cover: (a) the most common complaint themes; (b) regulatory responses across at least 4 jurisdictions (UK FCA, Australia ASIC, Singapore MAS, India RBI); (c) emerging supervisory practices around collection-conduct and fee transparency; (d) three implications for an Indonesian-style regulator overseeing 80 licensed P2P entities. Use authoritative sources (regulators, IMF, BIS, FSB). End with a 3-bullet "What this means for Contoso FSA" section.<button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 3 · Save to Word</div>
+    Click <b>Export to Word</b>. This becomes the briefing pack input for Exercise 4.
+  </div>
+</div>
+</section>
+
+<section id="ex2">
+<div class="modulehead"><div class="num">2</div><h2>Exercise 2 · Meeting Minutes<small>Teams Recap → Word</small></h2></div>
+<div class="activity">
+  <div class="head"><span class="num">5 min</span><span class="time">Premium</span><span class="badge gold">WORD COPILOT</span><span class="file"><a href="02 ContosoFSA_Supervisory_Meeting_Transcript.docx" download>02 ContosoFSA_Supervisory_Meeting_Transcript.docx</a></span></div>
+  <h4>Goal: Turn a supervisory review transcript into a formal meeting minutes document</h4>
+  <p>In real life this comes from <b>Teams Recap</b> auto-transcription. Today we use a sample transcript so everyone — including those who did not attend a real meeting — can run the exercise.</p>
+  <div class="task-step">
+    <div class="step-label">Step 1 · Open the file<span class="tool-badge">WORD ON THE WEB</span></div>
+    Download <a href="02 ContosoFSA_Supervisory_Meeting_Transcript.docx" download>02 ContosoFSA_Supervisory_Meeting_Transcript.docx</a> and open it in Word. Click the <b>Copilot</b> icon in the ribbon.
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 2 · Generate formal minutes</div>
+    <div class="prompt">Transform this meeting transcript into a formal Contoso FSA meeting minutes document. Use the following structure: (1) Header — meeting title, date/time, location, classification; (2) Attendees in a clean list; (3) Key decisions in bullet form; (4) Discussion summary, organised by topic (Banking, Capital Markets, Fintech, Consumer Protection, Surveillance) with 2-4 bullets each; (5) Action items in a table with columns: Action / Owner / Due date; (6) Next meeting date placeholder. Use neutral, authoritative regulator tone. Bahasa Indonesia headers, English-or-Indonesian content as in the source.<button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 3 · Polish</div>
+    Ask Copilot: "Now make sure all action items have a clear owner and a date. Highlight any item that is missing one in <b>red</b> in a follow-up note."
+  </div>
+</div>
+</section>
+
+<section id="ex3">
+<div class="modulehead"><div class="num">3</div><h2>Exercise 3 · Sector Survey Analysis<small>Excel + Plan in Excel + Analyst</small></h2></div>
+<div class="activity">
+  <div class="head"><span class="num">10 min</span><span class="time">Premium</span><span class="badge gold">EXCEL COPILOT</span><span class="badge gold">ANALYST</span><span class="file"><a href="01 ContosoFSA_Fintech_Sector_Survey.xlsx" download>01 ContosoFSA_Fintech_Sector_Survey.xlsx</a></span></div>
+  <h4>Goal: Surface the riskiest fintech entities and visualise the Q3 sector picture</h4>
+  <p>You have 80 licensed fintechs across 8 sub-sectors. Find the outliers, build a dashboard, and produce a one-paragraph executive summary — without writing a single formula.</p>
+  <div class="task-step">
+    <div class="step-label">Task 3a · Convert to a Table<span class="tool-badge">EXCEL</span></div>
+    Open <a href="01 ContosoFSA_Fintech_Sector_Survey.xlsx" download>01 ContosoFSA_Fintech_Sector_Survey.xlsx</a> in Excel. On the <b>Fintech Sector Survey</b> sheet press <b>Ctrl + T</b> to convert the data to a Table.
+  </div>
+  <div class="task-step">
+    <div class="step-label">Task 3b · Plan in Excel</div>
+    Open the Copilot pane and try Plan in Excel — describe an outcome, approve the plan, then run.
+    <div class="prompt">Build me a Q3 supervisory dashboard on a new sheet called "Q3 Dashboard". I want: (1) a KPI strip with four tiles — total entities, total AUM in IDR Bn, average AML compliance score, and number of entities rated High risk; (2) a column chart of count of entities by sub-sector; (3) a bar chart of total complaints by sub-sector; (4) a table of the top 10 highest-risk entities (sorted by Risk Rating then Complaints Filed Q3 descending) with columns: Entity Name, Sub-sector, Region, Complaints, AML Score, Cyber Incidents, Risk Rating; (5) conditional colour coding so that High = red, Elevated = amber, Moderate = yellow, Low = green. Show me the plan first; I will approve before you run it.<button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+  <div class="task-step">
+    <div class="step-label">Task 3c · Ask Analyst</div>
+    Open the Copilot pane → Analyst. Drop in the workbook.
+    <div class="prompt">Acting as a senior risk analyst, look at the Fintech Sector Survey, Capital Markets Indicators, and Bank Sector KPIs sheets together. Tell me: (a) which sub-sector is the biggest source of supervisory concern this quarter and why, citing specific data points; (b) which 5 banks are most likely to need supervisory attention next quarter based on CAR, NPL, and BOPO; (c) any cross-sector pattern between fintech complaints and capital-markets volatility. Reply with a 6-bullet executive summary suitable for a board pre-read.<button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+</div>
+</section>
+
+<section id="ex4">
+<div class="modulehead"><div class="num">4</div><h2>Exercise 4 · Cowork → HTML Dashboard<small>Delegate the whole workflow</small></h2></div>
+<div class="activity">
+  <div class="head"><span class="num">15 min</span><span class="time">Premium</span><span class="badge gold">COWORK</span><span class="file"><a href="01 ContosoFSA_Fintech_Sector_Survey.xlsx" download>01 ContosoFSA_Fintech_Sector_Survey.xlsx</a></span><span class="file"><a href="03 ContosoFSA_Stakeholder_Briefing.docx" download>03 ContosoFSA_Stakeholder_Briefing.docx</a></span><span class="file"><a href="04 ContosoFSA_Brand_Guidelines.docx" download>04 ContosoFSA_Brand_Guidelines.docx</a></span></div>
+  <h4>Goal: Delegate a full publication workflow ending in an interactive HTML supervisory dashboard</h4>
+  <p>Cowork is your delegated colleague: describe the outcome, approve the plan, and let Copilot produce the artefacts. We end the session with a downloadable HTML dashboard you can open in a browser and share with your peers.</p>
+  <div class="task-step">
+    <div class="step-label">Step 1 · Open Cowork<span class="tool-badge">M365 COPILOT</span></div>
+    In Copilot Chat, switch to the <b>Cowork</b> agent. Upload the three files listed above as grounding.
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 2 · Delegate the workflow</div>
+    <div class="prompt">Act as my chief of staff. Using the three files I uploaded (the Q3 Fintech Sector Survey, the Stakeholder Coordination Briefing, and the Contoso FSA Brand &amp; Publication Guidelines), produce three artefacts in this order:
+
+(1) A 5-bullet executive summary of the Q3 supervisory picture, in the Contoso FSA voice (authoritative but accessible, plain language).
+
+(2) A draft email from the Director of Sectoral Supervision to the Banking Association, the Stock Exchange leadership and the Fintech Industry Association, inviting them to the Q4 stakeholder calendar — pull dates and topics from the Stakeholder Briefing.
+
+(3) A single-file HTML supervisory dashboard called "ContosoFSA_Q3_Dashboard.html" that I can open in a browser. It must include:
+   - A header with "Contoso FSA — Q3 2026 Supervisory Snapshot" using brand colours (Authority Blue #1E3A5F, Trust Gold #C9A227)
+   - Four KPI tiles: total licensed fintech entities, total AUM (IDR Bn), average AML compliance score, count of High-risk entities
+   - A bar chart of complaints by sub-sector (use Chart.js from a CDN)
+   - A bar chart of count of entities by sub-sector
+   - A table of the Top 10 highest-risk fintech entities
+   - A footer with "Confidential — Internal Use Only"
+   - All styling inline; no external dependencies other than Chart.js CDN
+   - All chart data inlined as JS arrays from the survey workbook
+
+Show me the plan first. Pause for my approval before you run any step. After I approve, produce all three artefacts and give me the HTML as a downloadable file.<button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 3 · Open and admire</div>
+    Download the HTML file. Double-click to open in your browser. This is your take-home artefact — share it with your team.
+  </div>
+  <div class="callout good">
+    <b>What just happened:</b> You moved from raw data and a briefing document to an interactive shareable artefact in under 15 minutes — using only natural language. This is the new pattern of work for a regulator: <b>describe the outcome, approve the plan, ship the artefact.</b>
+  </div>
+</div>
+</section>
+
+<!-- FILES -->
+<section id="files">
+<div class="modulehead"><div class="num">📁</div><h2>Sample files<small>Download for the exercises</small></h2></div>
+<div class="card">
+<table>
+<thead><tr><th>File</th><th>Used in</th><th>What it contains</th></tr></thead>
+<tbody>
+<tr><td><a href="01 ContosoFSA_Fintech_Sector_Survey.xlsx" download>01 ContosoFSA_Fintech_Sector_Survey.xlsx</a></td><td>Exercise 3, Exercise 4</td><td>Q3 sector survey of 80 licensed fintechs, Capital Markets indicators, Bank Sector KPIs</td></tr>
+<tr><td><a href="02 ContosoFSA_Supervisory_Meeting_Transcript.docx" download>02 ContosoFSA_Supervisory_Meeting_Transcript.docx</a></td><td>Exercise 2</td><td>Sample transcript of the Q3 supervisory review meeting</td></tr>
+<tr><td><a href="03 ContosoFSA_Stakeholder_Briefing.docx" download>03 ContosoFSA_Stakeholder_Briefing.docx</a></td><td>Exercise 4</td><td>Q4 coordination briefing for banking, exchange, and fintech stakeholders</td></tr>
+<tr><td><a href="04 ContosoFSA_Brand_Guidelines.docx" download>04 ContosoFSA_Brand_Guidelines.docx</a></td><td>Exercise 4</td><td>Brand voice, visual identity, publication structure for the regulator</td></tr>
+</tbody>
+</table>
+<div class="callout warn">
+  <b>All sample files are synthetic.</b> Entity names and numbers are fabricated for training purposes only.
+</div>
+</div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+<div class="modulehead"><div class="num">💡</div><h2>Tips &amp; prompts<small>Take these home</small></h2></div>
+<div class="card">
+  <h4>Five prompt habits that make Copilot 10× better</h4>
+  <ul>
+    <li><b>Set the role.</b> "Act as a senior risk analyst..." beats no role 9 times out of 10.</li>
+    <li><b>Set the audience.</b> "...for a board pre-read" or "...for the Director" changes the output.</li>
+    <li><b>Demand structure.</b> Ask for bullets, sections, tables — Copilot will obey.</li>
+    <li><b>Constrain the length.</b> "In 6 bullets" or "in 200 words" prevents wall-of-text.</li>
+    <li><b>Iterate.</b> First draft is rarely the final. Ask Copilot to "make it more concise" or "make the tone more authoritative".</li>
+  </ul>
+  <h4>Three things Copilot will not do for you</h4>
+  <ul>
+    <li>Make supervisory or enforcement decisions — Copilot drafts, you decide.</li>
+    <li>Replace primary-source verification — always cross-check facts before publication.</li>
+    <li>Access systems it has not been connected to — your tenant, your files, your rules.</li>
+  </ul>
+  <h4>Where to go next</h4>
+  <ul>
+    <li>Copilot Adoption Hub: <a href="https://adoption.microsoft.com/copilot" target="_blank">adoption.microsoft.com/copilot</a></li>
+    <li>Copilot Lab (prompt library): <a href="https://copilot.cloud.microsoft/prompts" target="_blank">copilot.cloud.microsoft/prompts</a></li>
+    <li>M365 Copilot Roadmap: <a href="https://www.microsoft.com/microsoft-365/roadmap" target="_blank">microsoft.com/microsoft-365/roadmap</a></li>
+  </ul>
+</div>
+</section>
+
+</main>
+</div><!-- /layout -->
+
+<script>
+// ── Password ──
+const HASH='794b0f3448296d8bcc7cf057ad57ab29d10e71d1861b3c4fe84e797d623252c7';
+async function sha256(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function unlock(){
+  const v=document.getElementById('pw').value;
+  const h=await sha256(v);
+  if(h===HASH){
+    document.getElementById('lock').style.display='none';
+    document.getElementById('main').style.display='grid';
+    sessionStorage.setItem('cfsa_unlocked','1');
+    localStorage.setItem('cfsa_unlocked','1');
+  } else {
+    const e=document.getElementById('err');
+    e.textContent='Incorrect password. Please try again.';
+    setTimeout(()=>e.textContent='',3000);
+    document.getElementById('pw').value='';
+  }
+}
+function togglePw(){
+  const pw=document.getElementById('pw');
+  const svg=document.getElementById('eye-svg');
+  const btn=document.getElementById('toggle-pw');
+  if(pw.type==='password'){
+    pw.type='text';
+    btn.title='Hide password';
+    svg.setAttribute('viewBox','0 0 576 512');
+    svg.querySelector('path').setAttribute('d','M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.2 13.2 3.2 20.3z');
+  } else {
+    pw.type='password';
+    btn.title='Show password';
+    svg.setAttribute('viewBox','0 0 640 512');
+    svg.querySelector('path').setAttribute('d','M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z');
+  }
+}
+if(sessionStorage.getItem('cfsa_unlocked')==='1'||localStorage.getItem('cfsa_unlocked')==='1'){
+  document.getElementById('lock').style.display='none';
+  document.getElementById('main').style.display='grid';
+}
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+
+// ── Copy prompts ──
+function cp(btn){
+  const txt=btn.parentElement.textContent.replace('Copy','').replace('Copied!','').trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
+}
+
+// ── Active nav highlight ──
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      document.querySelectorAll('aside nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
