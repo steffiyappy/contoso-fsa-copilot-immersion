@@ -76,6 +76,11 @@ ul{padding-left:20px;margin:8px 0}li{margin:4px 0}
 .prompt .s .lbl{background:var(--g-src);color:#fff}
 .prompt .e{background:rgba(22,163,74,.18);color:#86efac;box-shadow:inset 2px 0 0 var(--g-exp)}
 .prompt .e .lbl{background:var(--g-exp);color:#fff}
+.prompt-lang{display:flex;align-items:center;gap:10px;margin:14px 0 4px;font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
+.prompt-lang::after{content:"";flex:1;height:1px;background:var(--border)}
+.prompt-lang.bi{color:#1565C0}
+.prompt-lang.en{color:#6B7280}
+.prompt-lang .flag{display:inline-block;font-size:13px}
 body:not(.gcse) .prompt-gcse{display:none}
 body.gcse .prompt-plain{display:none}
 /* Try-It-Yourself prompts always show the GCSE colour-coded version */
@@ -201,6 +206,7 @@ td a:hover{color:var(--accent2)}
     <a href="#ex2">Exercise 2 · Meeting Minutes</a>
     <a href="#ex3">Exercise 3 · Survey Analysis</a>
     <a href="#ex4">Exercise 4 · Cowork Dashboard</a>
+    <a href="#ex5">Exercise 5 · Agent Builder</a>
     <h3>Resources</h3>
     <a href="#tips">Tips &amp; prompts</a>
   </nav>
@@ -274,7 +280,8 @@ td a:hover{color:var(--accent2)}
   <div>00:40</div><div><b>Hands-on Exercise 2</b> · Teams Recap → Word formal minutes</div><div>5 min</div>
   <div>00:45</div><div><b>Hands-on Exercise 3</b> · Sector survey analysis (Excel + Plan + Analyst)</div><div>10 min</div>
   <div>00:55</div><div><b>Hands-on Exercise 4</b> · Cowork → interactive HTML dashboard</div><div>15 min</div>
-  <div>01:10</div><div><b>Wrap-up &amp; final Q&amp;A</b></div><div>5 min</div>
+  <div>01:10</div><div><b>Hands-on Exercise 5</b> · Agent Builder → reusable team agent</div><div>5 min</div>
+  <div>01:15</div><div><b>Wrap-up &amp; final Q&amp;A</b></div><div>5 min</div>
 </div>
 <div class="callout" style="margin-top:14px"><b>Tip:</b> Toggle <b>"GCSE colour-coded"</b> at the top of the page to see every prompt broken into <span style="color:var(--g-goal);font-weight:700">Goal</span> · <span style="color:var(--g-ctx);font-weight:700">Context</span> · <span style="color:var(--g-src);font-weight:700">Source</span> · <span style="color:var(--g-exp);font-weight:700">Expectation</span>.</div>
 </div>
@@ -441,24 +448,36 @@ td a:hover{color:var(--accent2)}
   <div class="head"><span class="num">TRY 1</span><span class="time">~2 min</span><span class="badge blue">COPILOT CHAT</span></div>
   <h4>Research a fintech sub-sector</h4>
   <p>Use Copilot Chat as your daily research analyst.</p>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya seorang supervisor di sebuah otoritas jasa keuangan. Berikan saya ringkasan singkat tentang tren regulasi global untuk pinjaman peer-to-peer (P2P lending) dalam 12 bulan terakhir, dengan fokus pada praktik penagihan, transparansi biaya, dan perlindungan konsumen. Sebutkan 3-5 sumber otoritatif (regulator, IMF, BIS, FSB) dan akhiri dengan 3 pertanyaan terbuka yang harus saya tanyakan kepada asosiasi industri minggu depan. Maksimum 8 poin.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya seorang supervisor di sebuah otoritas jasa keuangan.</span> <span class="g"><span class="lbl">G</span>Berikan saya ringkasan tren regulasi global untuk pinjaman peer-to-peer (P2P lending) dalam 12 bulan terakhir, dengan fokus pada praktik penagihan, transparansi biaya, dan perlindungan konsumen.</span> <span class="s"><span class="lbl">S</span>Gunakan 3-5 sumber otoritatif: regulator nasional, IMF, BIS, FSB.</span> <span class="e"><span class="lbl">E</span>Maksimum 8 poin, akhiri dengan 3 pertanyaan terbuka yang harus saya tanyakan kepada asosiasi industri minggu depan.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am a supervisor at a financial services authority. Give me a brief summary of global regulatory trends in peer-to-peer (P2P) lending over the last 12 months, focusing on collection practices, fee transparency, and consumer protection. Cite 3-5 authoritative sources (regulators, IMF, BIS, FSB) and end with 3 open questions I should ask the industry association next week. Max 8 bullets.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am a supervisor at a financial services authority.</span> <span class="g"><span class="lbl">G</span>Give me a summary of global regulatory trends in peer-to-peer (P2P) lending over the last 12 months, focusing on collection practices, fee transparency, and consumer protection.</span> <span class="s"><span class="lbl">S</span>Use 3-5 authoritative sources: national regulators, IMF, BIS, FSB.</span> <span class="e"><span class="lbl">E</span>Max 8 bullets, ending with 3 open questions I should ask the industry association next week.</span><button class="copy" onclick="cp(this)">Copy</button></div>
 </div>
 
 <div class="activity" id="try2">
   <div class="head"><span class="num">TRY 2</span><span class="time">~2 min</span><span class="badge blue">COPILOT CHAT</span></div>
   <h4>Draft a stakeholder email</h4>
   <p>Turn three rough bullets into a polished, professional email in seconds.</p>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya adalah Direktur Pengawasan Sektor di Contoso FSA dan akan mengirim email kepada Ketua Asosiasi Perbankan. Tolong tuliskan email resmi yang mengundang mereka ke pertemuan koordinasi triwulanan pada 14 November. Pertemuan akan membahas: (1) tindak lanjut kerangka ketahanan operasional, (2) kalender BCM tabletop, (3) dialog tertutup dengan dua bank Tier-1 mengenai buffer CAR. Bahasa Indonesia, nada profesional. Akhiri dengan permintaan konfirmasi kehadiran sebelum 31 Oktober.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya adalah Direktur Pengawasan Sektor di Contoso FSA dan akan mengirim email kepada Ketua Asosiasi Perbankan.</span> <span class="g"><span class="lbl">G</span>Tuliskan email resmi yang mengundang mereka ke pertemuan koordinasi triwulanan pada 14 November.</span> <span class="s"><span class="lbl">S</span>Pertemuan akan membahas: (1) tindak lanjut kerangka ketahanan operasional, (2) kalender BCM tabletop, (3) dialog tertutup dengan dua bank Tier-1 mengenai buffer CAR.</span> <span class="e"><span class="lbl">E</span>Bahasa Indonesia, nada profesional. Akhiri dengan permintaan konfirmasi kehadiran sebelum 31 Oktober.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am the Director of Sectoral Supervision at Contoso FSA and I'm about to email the Chairman of the Banking Association. Please write a formal email inviting them to the quarterly coordination meeting on 14 November. The meeting will cover: (1) follow-up on the operational resilience framework, (2) the BCM tabletop calendar, (3) a closed-door dialogue with two Tier-1 banks on CAR buffers. English, professional tone. End with a request to confirm attendance by 31 October.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am the Director of Sectoral Supervision at Contoso FSA and I'm about to email the Chairman of the Banking Association.</span> <span class="g"><span class="lbl">G</span>Write a formal email inviting them to the quarterly coordination meeting on 14 November.</span> <span class="s"><span class="lbl">S</span>The meeting will cover: (1) follow-up on the operational resilience framework, (2) the BCM tabletop calendar, (3) a closed-door dialogue with two Tier-1 banks on CAR buffers.</span> <span class="e"><span class="lbl">E</span>English, professional tone. End with a request to confirm attendance by 31 October.</span><button class="copy" onclick="cp(this)">Copy</button></div>
 </div>
 
 <div class="activity" id="try3">
   <div class="head"><span class="num">TRY 3</span><span class="time">~1 min</span><span class="badge blue">COPILOT CHAT</span></div>
   <h4>Summarise a long policy document</h4>
   <p>Try this with any public consultation paper you can find online (paste the URL).</p>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya seorang supervisor di otoritas jasa keuangan yang sedang mempersiapkan posisi awal terhadap konsultasi publik internasional. Tolong baca dokumen yang ditautkan dan ringkas isinya. URL: https://www.fsb.org/uploads/P290426.pdf. Berikan: (a) ringkasan eksekutif maksimal 6 poin, (b) dampak utama bagi otoritas pengawas dalam 3 poin, (c) tiga risiko implementasi yang harus dipertimbangkan, dan (d) rekomendasi posisi awal yang netral.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya seorang supervisor di otoritas jasa keuangan yang sedang mempersiapkan posisi awal terhadap konsultasi publik internasional.</span> <span class="g"><span class="lbl">G</span>Baca dokumen yang ditautkan dan ringkas isinya untuk konsumsi internal.</span> <span class="s"><span class="lbl">S</span>URL: https://www.fsb.org/uploads/P290426.pdf.</span> <span class="e"><span class="lbl">E</span>Berikan: (a) ringkasan eksekutif maksimal 6 poin, (b) dampak utama bagi otoritas pengawas dalam 3 poin, (c) tiga risiko implementasi yang harus dipertimbangkan, (d) rekomendasi posisi awal yang netral.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am a supervisor at a financial services authority preparing an initial position on an international public consultation. Please read the linked document and summarise it. URL: https://www.fsb.org/uploads/P290426.pdf. Provide: (a) an executive summary in max 6 bullets, (b) the main impact on supervisory authorities in 3 bullets, (c) three implementation risks to consider, and (d) a neutral initial position recommendation.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am a supervisor at a financial services authority preparing an initial position on an international public consultation.</span> <span class="g"><span class="lbl">G</span>Read the linked document and summarise it for internal consumption.</span> <span class="s"><span class="lbl">S</span>URL: https://www.fsb.org/uploads/P290426.pdf.</span> <span class="e"><span class="lbl">E</span>Provide: (a) an executive summary in max 6 bullets, (b) the main impact on supervisory authorities in 3 bullets, (c) three implementation risks to consider, (d) a neutral initial position recommendation.</span><button class="copy" onclick="cp(this)">Copy</button></div>
 </div>
 
 <div class="callout good"><b>What you just experienced</b> is available to <b>every</b> employee at Contoso FSA today, regardless of licence type. The next exercises require an M365 Copilot premium licence.</div>
@@ -478,8 +497,12 @@ td a:hover{color:var(--accent2)}
   </div>
   <div class="task-step">
     <div class="step-label">Step 2 · Run the prompt</div>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya adalah Direktur Pengawasan Sektor di Contoso Financial Services Authority yang mengawasi 80 entitas P2P berlisensi. Susun research brief sepanjang 2 halaman tentang tren global keluhan konsumen pinjaman peer-to-peer dalam 18 bulan terakhir. Cakup: (a) tema keluhan yang paling sering muncul; (b) respons regulasi di minimal 4 yurisdiksi (UK FCA, Australia ASIC, Singapore MAS, India RBI); (c) praktik pengawasan terbaru terkait perilaku penagihan dan transparansi biaya; (d) tiga implikasi bagi regulator gaya Indonesia. Gunakan sumber otoritatif (regulator, IMF, BIS, FSB). Akhiri dengan bagian 3 poin "Apa artinya bagi Contoso FSA".<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya adalah Direktur Pengawasan Sektor di Contoso Financial Services Authority yang mengawasi 80 entitas P2P berlisensi.</span> <span class="g"><span class="lbl">G</span>Susun research brief tentang tren global keluhan konsumen pinjaman peer-to-peer dalam 18 bulan terakhir.</span> <span class="s"><span class="lbl">S</span>Gunakan sumber otoritatif — regulator, IMF, BIS, FSB. Rujuk minimal 4 yurisdiksi: UK FCA, Australia ASIC, Singapore MAS, India RBI.</span> <span class="e"><span class="lbl">E</span>Brief 2 halaman yang mencakup (a) tema keluhan yang paling sering muncul, (b) respons regulasi di 4 yurisdiksi tersebut, (c) praktik pengawasan terbaru terkait perilaku penagihan dan transparansi biaya, (d) tiga implikasi bagi regulator gaya Indonesia. Akhiri dengan bagian 3 poin "Apa artinya bagi Contoso FSA".</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am the Director of Sectoral Supervision at Contoso Financial Services Authority overseeing 80 licensed P2P entities. Produce a 2-page research brief on global trends in peer-to-peer lending consumer complaints over the last 18 months. Cover: (a) the most common complaint themes; (b) regulatory responses across at least 4 jurisdictions (UK FCA, Australia ASIC, Singapore MAS, India RBI); (c) emerging supervisory practices on collection conduct and fee transparency; (d) three implications for an Indonesian-style regulator. Use authoritative sources (regulators, IMF, BIS, FSB). End with a 3-bullet "What this means for Contoso FSA" section.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am the Director of Sectoral Supervision at Contoso Financial Services Authority overseeing 80 licensed P2P entities.</span> <span class="g"><span class="lbl">G</span>Produce a research brief on global trends in peer-to-peer lending consumer complaints over the last 18 months.</span> <span class="s"><span class="lbl">S</span>Use authoritative sources — regulators, IMF, BIS, FSB. Reference at least 4 jurisdictions: UK FCA, Australia ASIC, Singapore MAS, India RBI.</span> <span class="e"><span class="lbl">E</span>A 2-page brief covering (a) most common complaint themes, (b) regulatory responses across the 4 jurisdictions, (c) emerging supervisory practices on collection conduct and fee transparency, (d) three implications for an Indonesian-style regulator. End with a 3-bullet "What this means for Contoso FSA" section.</span><button class="copy" onclick="cp(this)">Copy</button></div>
   </div>
   <div class="task-step">
     <div class="step-label">Step 3 · Save to Word</div>
@@ -500,8 +523,12 @@ td a:hover{color:var(--accent2)}
   </div>
   <div class="task-step">
     <div class="step-label">Step 2 · Generate formal minutes</div>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya sedang menyiapkan notulen resmi rapat tinjauan pengawasan Q3 di Contoso FSA, untuk arsip pimpinan senior. Ubah transkrip yang sedang terbuka di dokumen Word ini menjadi notulen rapat resmi Contoso FSA dengan struktur berikut: (1) Header — judul rapat, tanggal/waktu, lokasi, klasifikasi; (2) Daftar peserta yang rapi; (3) Keputusan utama dalam bentuk poin; (4) Ringkasan diskusi, dikelompokkan per topik (Perbankan, Pasar Modal, Fintech, Perlindungan Konsumen, Surveilans) dengan 2-4 poin per topik; (5) Action items dalam tabel dengan kolom: Aksi / PIC / Tenggat; (6) Placeholder tanggal rapat berikutnya. Nada: netral, otoritatif sebagai regulator. Header dalam Bahasa Indonesia, bahasa konten mengikuti sumber.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya sedang menyiapkan notulen resmi rapat tinjauan pengawasan Q3 di Contoso FSA, untuk arsip pimpinan senior.</span> <span class="g"><span class="lbl">G</span>Ubah transkrip ini menjadi notulen rapat resmi Contoso FSA.</span> <span class="s"><span class="lbl">S</span>Gunakan transkrip rapat yang sedang terbuka di dokumen Word ini sebagai satu-satunya sumber.</span> <span class="e"><span class="lbl">E</span>Struktur: (1) Header (judul, tanggal/waktu, lokasi, klasifikasi); (2) Daftar peserta; (3) Keputusan utama dalam poin; (4) Ringkasan diskusi per topik (Perbankan, Pasar Modal, Fintech, Perlindungan Konsumen, Surveilans), 2-4 poin per topik; (5) Tabel action items — Aksi / PIC / Tenggat; (6) Placeholder rapat berikutnya. Nada: netral, otoritatif sebagai regulator. Header dalam Bahasa Indonesia, bahasa konten mengikuti sumber.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am preparing the formal minutes of a Q3 supervisory review meeting at Contoso FSA, archived for senior leadership. Transform the transcript currently open in this Word document into a formal Contoso FSA meeting minutes document. Use the following structure: (1) Header — meeting title, date/time, location, classification; (2) Attendees in a clean list; (3) Key decisions in bullet form; (4) Discussion summary, organised by topic (Banking, Capital Markets, Fintech, Consumer Protection, Surveillance) with 2-4 bullets each; (5) Action items in a table with columns: Action / Owner / Due date; (6) Next meeting date placeholder. Tone: neutral, authoritative regulator. English throughout.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am preparing the formal minutes of a Q3 supervisory review meeting at Contoso FSA, archived for senior leadership.</span> <span class="g"><span class="lbl">G</span>Transform this transcript into a formal Contoso FSA meeting minutes document.</span> <span class="s"><span class="lbl">S</span>Use the meeting transcript currently open in this Word document as the only source.</span> <span class="e"><span class="lbl">E</span>Structure as: (1) Header (title, date/time, location, classification); (2) Attendees list; (3) Key decisions in bullets; (4) Discussion summary by topic (Banking, Capital Markets, Fintech, Consumer Protection, Surveillance) with 2-4 bullets each; (5) Action items table — Action / Owner / Due date; (6) Next meeting placeholder. Tone: neutral, authoritative regulator. English throughout.</span><button class="copy" onclick="cp(this)">Copy</button></div>
   </div>
   <div class="task-step">
     <div class="step-label">Step 3 · Polish</div>
@@ -523,14 +550,22 @@ td a:hover{color:var(--accent2)}
   <div class="task-step">
     <div class="step-label">Task 3b · Plan in Excel</div>
     Open the Copilot pane and try Plan in Excel — describe an outcome, approve the plan, then run.
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya seorang pengawas sektor yang sedang menyiapkan dashboard Q3 untuk tinjauan internal. Bangun dashboard pengawasan Q3 pada sheet baru bernama "Q3 Dashboard", menggunakan tabel Fintech Sector Survey yang baru saya buat. Saya ingin: (1) KPI strip dengan empat tile — total entitas, total AUM dalam IDR Bn, rata-rata skor kepatuhan AML, dan jumlah entitas berperingkat High risk; (2) grafik kolom jumlah entitas per sub-sektor; (3) grafik batang total keluhan per sub-sektor; (4) tabel 10 entitas berisiko tertinggi (urutkan menurut Risk Rating lalu Complaints Filed Q3 secara descending) dengan kolom: Entity Name, Sub-sector, Region, Complaints, AML Score, Cyber Incidents, Risk Rating; (5) pewarnaan bersyarat: High = merah, Elevated = amber, Moderate = kuning, Low = hijau. Tampilkan rencanamu lebih dulu; saya akan menyetujui sebelum kamu menjalankannya.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya seorang pengawas sektor yang sedang menyiapkan dashboard Q3 untuk tinjauan internal.</span> <span class="g"><span class="lbl">G</span>Bangun dashboard pengawasan Q3 pada sheet baru bernama "Q3 Dashboard".</span> <span class="s"><span class="lbl">S</span>Gunakan tabel Fintech Sector Survey yang baru saya buat di workbook ini.</span> <span class="e"><span class="lbl">E</span>Sertakan (1) KPI strip dengan empat tile — total entitas, total AUM (IDR Bn), rata-rata skor kepatuhan AML, jumlah entitas High-risk; (2) grafik kolom jumlah per sub-sektor; (3) grafik batang keluhan per sub-sektor; (4) tabel top-10 entitas berisiko tertinggi, urutkan menurut Risk Rating lalu Complaints descending, kolom: Entity Name, Sub-sector, Region, Complaints, AML Score, Cyber Incidents, Risk Rating; (5) warna bersyarat: High=merah, Elevated=amber, Moderate=kuning, Low=hijau. Tampilkan rencananya lebih dulu dan tunggu persetujuan saya sebelum dijalankan.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I am a sectoral supervisor preparing the Q3 dashboard for an internal review. Build me a Q3 supervisory dashboard on a new sheet called "Q3 Dashboard", using the Fintech Sector Survey table I just created. I want: (1) a KPI strip with four tiles — total entities, total AUM in IDR Bn, average AML compliance score, and number of entities rated High risk; (2) a column chart of count of entities by sub-sector; (3) a bar chart of total complaints by sub-sector; (4) a table of the top 10 highest-risk entities (sorted by Risk Rating then Complaints Filed Q3 descending) with columns: Entity Name, Sub-sector, Region, Complaints, AML Score, Cyber Incidents, Risk Rating; (5) conditional colour coding so that High = red, Elevated = amber, Moderate = yellow, Low = green. Show me the plan first; I will approve before you run it.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I am a sectoral supervisor preparing the Q3 dashboard for an internal review.</span> <span class="g"><span class="lbl">G</span>Build me a Q3 supervisory dashboard on a new sheet called "Q3 Dashboard".</span> <span class="s"><span class="lbl">S</span>Use the Fintech Sector Survey table I just created in this workbook.</span> <span class="e"><span class="lbl">E</span>Include (1) a KPI strip with four tiles — total entities, total AUM (IDR Bn), average AML compliance score, count of High-risk entities; (2) a column chart of count by sub-sector; (3) a bar chart of complaints by sub-sector; (4) a top-10 highest-risk entities table sorted by Risk Rating then Complaints descending, with columns: Entity Name, Sub-sector, Region, Complaints, AML Score, Cyber Incidents, Risk Rating; (5) conditional colours: High=red, Elevated=amber, Moderate=yellow, Low=green. Show me the plan first and pause for my approval before running.</span><button class="copy" onclick="cp(this)">Copy</button></div>
   </div>
   <div class="task-step">
     <div class="step-label">Task 3c · Ask Analyst</div>
     Open the Copilot pane → Analyst. Drop in the workbook.
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Saya seorang analis risiko senior di Contoso FSA yang sedang menyiapkan pre-read dewan untuk minggu depan. Telaah seluruh sheet Fintech Sector Survey, Capital Markets Indicators, dan Bank Sector KPIs di workbook ini. Beri tahu saya: (a) sub-sektor mana yang menjadi sumber kekhawatiran pengawasan terbesar pada kuartal ini dan mengapa, dengan menyebut data spesifik; (b) 5 bank mana yang paling mungkin memerlukan perhatian pengawasan kuartal depan berdasarkan CAR, NPL, dan BOPO; (c) pola lintas sektor antara keluhan fintech dan volatilitas pasar modal. Jawab dengan ringkasan eksekutif 6 poin yang cocok untuk pre-read dewan.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Saya seorang analis risiko senior di Contoso FSA yang sedang menyiapkan pre-read dewan untuk minggu depan.</span> <span class="g"><span class="lbl">G</span>Identifikasi prioritas kekhawatiran pengawasan di seluruh tiga dataset secara bersamaan.</span> <span class="s"><span class="lbl">S</span>Gunakan sheet Fintech Sector Survey, Capital Markets Indicators, dan Bank Sector KPIs di workbook ini.</span> <span class="e"><span class="lbl">E</span>Beri tahu saya (a) sub-sektor mana yang menjadi sumber kekhawatiran pengawasan terbesar kuartal ini dan mengapa, dengan menyebut data spesifik; (b) 5 bank mana yang paling mungkin memerlukan perhatian pengawasan kuartal depan berdasarkan CAR, NPL, dan BOPO; (c) pola lintas sektor antara keluhan fintech dan volatilitas pasar modal. Jawab dengan ringkasan eksekutif 6 poin yang cocok untuk pre-read dewan.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">I'm a senior risk analyst at Contoso FSA preparing a board pre-read for next week. Look across the Fintech Sector Survey, Capital Markets Indicators, and Bank Sector KPIs sheets in this workbook. Tell me: (a) which sub-sector is the biggest source of supervisory concern this quarter and why, citing specific data points; (b) which 5 banks are most likely to need supervisory attention next quarter based on CAR, NPL, and BOPO; (c) any cross-sector pattern between fintech complaints and capital-markets volatility. Reply with a 6-bullet executive summary suitable for a board pre-read.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>I'm a senior risk analyst at Contoso FSA preparing a board pre-read for next week.</span> <span class="g"><span class="lbl">G</span>Identify the top supervisory concerns across all three datasets together.</span> <span class="s"><span class="lbl">S</span>Use the Fintech Sector Survey, Capital Markets Indicators, and Bank Sector KPIs sheets in this workbook.</span> <span class="e"><span class="lbl">E</span>Tell me (a) which sub-sector is the biggest source of supervisory concern this quarter and why, citing specific data points; (b) which 5 banks are most likely to need supervisory attention next quarter based on CAR, NPL, and BOPO; (c) any cross-sector pattern between fintech complaints and capital-markets volatility. Reply with a 6-bullet executive summary suitable for a board pre-read.</span><button class="copy" onclick="cp(this)">Copy</button></div>
   </div>
 </div>
 </section>
@@ -547,6 +582,7 @@ td a:hover{color:var(--accent2)}
   </div>
   <div class="task-step">
     <div class="step-label">Step 2 · Delegate the workflow</div>
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
 <div class="prompt prompt-plain">Bertindaklah sebagai chief of staff saya. Saya akan mempublikasikan gambaran Q3 kepada pimpinan dan tiga badan pemangku kepentingan. Dengan menggunakan tiga file yang saya unggah (Q3 Fintech Sector Survey, Stakeholder Coordination Briefing, dan Contoso FSA Brand &amp; Publication Guidelines), produksi tiga artefak berikut secara berurutan:
 
 (1) Ringkasan eksekutif 5 poin dengan gaya bahasa Contoso FSA (otoritatif namun mudah dipahami, bahasa sederhana).
@@ -557,12 +593,90 @@ td a:hover{color:var(--accent2)}
 
 Tampilkan rencananya lebih dulu. Tunggu persetujuan saya sebelum menjalankan setiap langkah. Setelah saya menyetujui, produksi ketiga artefak dan berikan HTML sebagai file yang dapat saya unduh.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Bertindaklah sebagai chief of staff saya. Saya akan mempublikasikan gambaran Q3 kepada pimpinan dan tiga badan pemangku kepentingan.</span> <span class="g"><span class="lbl">G</span>Produksi tiga artefak berikut secara berurutan: (1) ringkasan eksekutif 5 poin, (2) email koordinasi pemangku kepentingan, (3) dashboard pengawasan HTML interaktif.</span> <span class="s"><span class="lbl">S</span>Gunakan tiga file yang saya unggah: Q3 Fintech Sector Survey, Stakeholder Coordination Briefing, dan Contoso FSA Brand &amp; Publication Guidelines.</span> <span class="e"><span class="lbl">E</span>(1) Ringkasan eksekutif dengan gaya bahasa Contoso FSA (otoritatif namun mudah dipahami, bahasa sederhana). (2) Email dari Direktur Pengawasan Sektor kepada BAI, pimpinan IDX, dan FAN, mengundang mereka ke kalender pemangku kepentingan Q4 — ambil tanggal dan topik dari Stakeholder Briefing. (3) HTML satu file bernama "ContosoFSA_Q3_Dashboard.html" dengan warna merek #1E3A5F + #C9A227, berisi: header "Contoso FSA — Q3 2026 Supervisory Snapshot"; empat KPI tile (entitas / AUM / rata-rata AML / jumlah High-risk); dua grafik batang (keluhan per sub-sektor, jumlah per sub-sektor) via Chart.js CDN; tabel top-10 berisiko tertinggi; footer "Confidential — Internal Use Only"; styling inline; tanpa dependensi eksternal selain Chart.js CDN; data chart di-inline sebagai array JS. Tampilkan rencananya lebih dulu dan tunggu persetujuan sebelum setiap langkah.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">Act as my chief of staff. I'm publishing the Q3 picture to the leadership team and three stakeholder bodies. Using the three files I uploaded (the Q3 Fintech Sector Survey, the Stakeholder Coordination Briefing, and the Contoso FSA Brand &amp; Publication Guidelines), produce three artefacts in this order:
+
+(1) A 5-bullet executive summary in the Contoso FSA voice (authoritative but accessible, plain language).
+
+(2) A draft email from the Director of Sectoral Supervision to the Banking Association, the Stock Exchange leadership and the Fintech Industry Association, inviting them to the Q4 stakeholder calendar — pull dates and topics from the Stakeholder Briefing.
+
+(3) A single-file HTML supervisory dashboard called "ContosoFSA_Q3_Dashboard.html" that I can open in a browser. Use brand colours Authority Blue #1E3A5F and Trust Gold #C9A227. Include: a header "Contoso FSA — Q3 2026 Supervisory Snapshot"; four KPI tiles (total licensed fintech entities, total AUM IDR Bn, average AML compliance score, count of High-risk entities); a bar chart of complaints by sub-sector and a bar chart of count of entities by sub-sector using Chart.js from a CDN; a table of the Top 10 highest-risk fintech entities; a footer "Confidential — Internal Use Only". All styling inline; no external dependencies other than Chart.js CDN; all chart data inlined as JS arrays from the survey workbook.
+
+Show me the plan first. Pause for my approval before running each step. After I approve, produce all three artefacts and give me the HTML as a downloadable file.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Act as my chief of staff. I'm publishing the Q3 picture to the leadership team and three stakeholder bodies.</span> <span class="g"><span class="lbl">G</span>Produce three artefacts in this order: (1) a 5-bullet executive summary, (2) a stakeholder coordination email, (3) an interactive HTML supervisory dashboard.</span> <span class="s"><span class="lbl">S</span>Use the three files I uploaded: the Q3 Fintech Sector Survey, the Stakeholder Coordination Briefing, and the Contoso FSA Brand &amp; Publication Guidelines.</span> <span class="e"><span class="lbl">E</span>(1) Executive summary in Contoso FSA voice (authoritative but accessible, plain language). (2) Email from the Director of Sectoral Supervision to BAI, IDX leadership and FAN, inviting them to the Q4 stakeholder calendar — pull dates and topics from the Stakeholder Briefing. (3) Single-file HTML named "ContosoFSA_Q3_Dashboard.html" using brand colours #1E3A5F + #C9A227, with: header "Contoso FSA — Q3 2026 Supervisory Snapshot"; four KPI tiles (entities / AUM / avg AML / High-risk count); two bar charts (complaints by sub-sector, count by sub-sector) via Chart.js CDN; top-10 highest-risk table; footer "Confidential — Internal Use Only"; inline styling; no external deps other than Chart.js CDN; chart data inlined as JS arrays. Show me the plan first and pause for approval before each step.</span><button class="copy" onclick="cp(this)">Copy</button></div>
   </div>
   <div class="task-step">
     <div class="step-label">Step 3 · Open and admire</div>
     Download the HTML file. Double-click to open in your browser. This is your take-home artefact — share it with your team.
   </div>
   <div class="callout good"><b>What just happened:</b> You moved from raw data and a briefing document to an interactive shareable artefact in under 15 minutes — using only natural language. This is the new pattern of work for a regulator: <b>describe the outcome, approve the plan, ship the artefact.</b></div>
+</div>
+</section>
+
+
+<section id="ex5">
+<div class="modulehead"><div class="num">5</div><h2>Exercise 5 · Scale with Agent Builder<small>Turn the whole workflow into a reusable agent</small></h2></div>
+<div class="activity">
+  <div class="head"><span class="num">5 min</span><span class="time">Premium</span><span class="badge gold">AGENT BUILDER</span><span class="file"><a href="01 ContosoFSA_Fintech_Sector_Survey.xlsx" download>01 Survey</a></span><span class="file"><a href="03 ContosoFSA_Stakeholder_Briefing.docx" download>03 Briefing</a></span><span class="file"><a href="04 ContosoFSA_Brand_Guidelines.docx" download>04 Brand</a></span></div>
+  <h4>Goal: Package the Q3 review workflow as a no-code agent your whole team can reuse</h4>
+  <p>Agent Builder lets you describe an agent in natural language — no developer required. The result is a custom Copilot grounded on your files that every supervisor can invoke in one click, every quarter.</p>
+  <div class="task-step">
+    <div class="step-label">Step 1 · Open Agent Builder<span class="tool-badge">M365 COPILOT</span></div>
+    In Copilot Chat, click <b>Create an agent</b> (or open the Agent Builder pane). Upload the three sample files as knowledge sources.
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 2 · Describe your agent</div>
+    Paste the prompt below into the agent description. Adjust the persona, sub-sectors, or starter prompts to match your team.
+<div class="prompt-lang bi"><span class="flag">🇮🇩</span>Bahasa Indonesia</div>
+<div class="prompt prompt-plain">Bangun agen Copilot bernama "CFSA Q3 Supervisory Review Assistant".
+
+Tujuan: membantu setiap supervisor di Contoso Financial Services Authority menjalankan tinjauan sektor triwulanan Q3 secara lengkap — dari riset hingga dashboard yang siap dibagikan ke pemangku kepentingan — dalam satu percakapan.
+
+Instruksi agen:
+• Selalu sapa pengguna sebagai supervisor CFSA dan tanyakan sub-sektor fokus (Perbankan, Pasar Modal, atau Fintech).
+• Dasarkan setiap jawaban pada tiga file pengetahuan yang diunggah: Fintech Sector Survey, Stakeholder Briefing, dan Brand &amp; Publication Guidelines.
+• Gunakan gaya bahasa Contoso FSA sesuai Brand Guidelines: otoritatif namun mudah dipahami.
+• Saat pengguna meminta analisis, ikuti urutan: (1) ringkasan data, (2) tiga risiko tertinggi dengan rujukan ke baris spesifik, (3) saran tindak lanjut untuk pemangku kepentingan.
+• Saat pengguna meminta artefak publikasi, tawarkan tiga output Cowork (ringkasan eksekutif, email pemangku kepentingan, dashboard HTML) dan tanyakan mana yang ingin diproduksi lebih dulu.
+• Jangan pernah membuat keputusan pengawasan; selalu sajikan opsi dan rekomendasi untuk disetujui pengguna.
+
+Prompt awal yang disarankan:
+1. "Berikan gambaran sektor fintech Q3."
+2. "Susun draf email pemangku kepentingan untuk rapat koordinasi Q4."
+3. "Bangun dashboard HTML Q3."
+
+Pengetahuan: gunakan ketiga file yang diunggah sebagai sumber pengetahuan agen.
+
+Nada: profesional, ringkas. Default Bahasa Indonesia; beralih ke Bahasa Inggris jika pengguna menulis dalam Bahasa Inggris.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Setiap supervisor di CFSA menjalankan tinjauan sektor Q3 yang sama setiap kuartal.</span> <span class="g"><span class="lbl">G</span>Bangun agen Copilot bernama "CFSA Q3 Supervisory Review Assistant" yang memandu seluruh alur kerja dari riset hingga dashboard.</span> <span class="s"><span class="lbl">S</span>Gunakan tiga file yang diunggah: Fintech Sector Survey, Stakeholder Briefing, dan Brand &amp; Publication Guidelines.</span> <span class="e"><span class="lbl">E</span>Agen harus: (1) menyapa sebagai supervisor CFSA dan menanyakan sub-sektor fokus; (2) untuk analisis — ringkasan data, top-3 risiko dengan rujukan baris, saran tindak lanjut; (3) untuk publikasi — menawarkan ringkasan eksekutif, email, atau dashboard HTML; (4) tidak pernah memutuskan, hanya merekomendasikan untuk disetujui pengguna. Sertakan 3 starter prompts. Nada profesional dan ringkas; default Bahasa Indonesia, beralih ke Bahasa Inggris bila perlu.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt-lang en"><span class="flag">🇬🇧</span>English</div>
+<div class="prompt prompt-plain">Build me a Copilot agent called "CFSA Q3 Supervisory Review Assistant".
+
+Purpose: help any supervisor at Contoso Financial Services Authority run a complete Q3 quarterly sectoral review — from research to a stakeholder-ready dashboard — in a single conversation.
+
+Instructions for the agent:
+• Always greet the user as a CFSA supervisor and confirm which sub-sector they want to focus on (Banking, Capital Markets, or Fintech).
+• Ground every answer on the three uploaded knowledge files: Fintech Sector Survey, Stakeholder Briefing, and Brand &amp; Publication Guidelines.
+• Use the Contoso FSA voice from the Brand Guidelines: authoritative but accessible.
+• When the user asks for analysis, follow this sequence: (1) summarise the data, (2) highlight top-3 risks with citations to specific rows, (3) suggest a stakeholder follow-up action.
+• When the user asks for a publication artefact, offer the three Cowork outputs (executive summary, stakeholder email, HTML dashboard) and ask which one to produce first.
+• Never make a supervisory decision; always present options and recommendations for the user to approve.
+
+Starter prompts to suggest:
+1. "Give me the Q3 sector picture for fintech."
+2. "Draft the stakeholder email for the Q4 coordination meeting."
+3. "Build the Q3 HTML dashboard."
+
+Knowledge: attach the three uploaded files as the agent's knowledge sources.
+
+Tone: professional, concise. Bahasa Indonesia by default; switch to English if the user writes in English.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="prompt prompt-gcse"><span class="c"><span class="lbl">C</span>Every supervisor at CFSA runs the same Q3 sectoral review each quarter.</span> <span class="g"><span class="lbl">G</span>Build a Copilot agent called "CFSA Q3 Supervisory Review Assistant" that walks them through the entire workflow from research to dashboard.</span> <span class="s"><span class="lbl">S</span>Use the three uploaded files: Fintech Sector Survey, Stakeholder Briefing, and Brand &amp; Publication Guidelines.</span> <span class="e"><span class="lbl">E</span>The agent must: (1) greet as a CFSA supervisor and ask which sub-sector to focus on; (2) for analysis — summarise data, top-3 risks with row-level citations, suggest a follow-up action; (3) for publication — offer the executive summary, stakeholder email, or HTML dashboard; (4) never decide, only recommend for user approval. Include 3 starter prompts. Professional concise tone; Bahasa Indonesia default, switch to English when needed.</span><button class="copy" onclick="cp(this)">Copy</button></div>
+  </div>
+  <div class="task-step">
+    <div class="step-label">Step 3 · Test and share</div>
+    Click <b>Create</b>. Test with one of the starter prompts. When satisfied, click <b>Share</b> and add your team — they get the same one-click workflow without touching the prompt.
+  </div>
+  <div class="callout good"><b>The big idea:</b> You just turned a one-person, one-day workflow into a <b>team-wide capability</b>. Every quarter, every supervisor can run the same Q3 review in minutes — consistent, grounded on CFSA files, in CFSA voice.</div>
 </div>
 </section>
 
